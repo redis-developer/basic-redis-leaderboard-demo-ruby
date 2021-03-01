@@ -1,7 +1,7 @@
 
-# Basic Redis Leaderboard Demo NodeJS
+# Basic Redis Leaderboard Demo Ruby on Rails
 
-Show how the redis works with NodeJS, Express.
+Show how the redis works with Ruby on Rails.
 
 ## Screenshots
 
