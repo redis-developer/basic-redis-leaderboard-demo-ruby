@@ -6,16 +6,17 @@ Show how the redis works with Ruby on Rails.
 ## Screenshots
 
 ![How it works](leaderboard/public/screenshot001.png)
+<img src="leaderboard/public/screenshot002.png" width="50%" height='200'/><img src="leaderboard/public/screenshot003.png" width="50%" height='200'/>
 
 # How it works?
 ## 1. How the data is stored:
 <ol>
-    <li>The company data is stored in a hash like below:
-      <pre>HSET "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA</pre>
-     </li>
-    <li>The Ranks are stored in a ZSET.
-      <pre>ZADD companyLeaderboard 2600000000000 company:AAPL</pre>
-    </li>
+  <li>The company data is stored in a hash like below:
+    <pre>HSET "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA</pre>
+   </li>
+  <li>The Ranks are stored in a ZSET.
+    <pre>ZADD companyLeaderboard 2600000000000 company:AAPL</pre>
+  </li>
 </ol>
 
 <br/>
@@ -34,6 +35,18 @@ Show how the redis works with Ruby on Rails.
 </ol>
 
 ## How to run it locally?
+
+### Prerequisites
+
+- Ruby - v2.7.2
+- Rails - v5.2.4.5
+- NPM - v6.14.8
+
+## Development
+
+```
+git clone
+```
 
 #### Run frontend
 

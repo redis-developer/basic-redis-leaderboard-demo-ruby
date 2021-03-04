@@ -1,0 +1,33 @@
+
+{
+  "app_name": "Basic Redis Leaderboard Demo Ruby on Rails",
+  "description": "Showcases how to impliment leaderboard appliation in Ruby on Rails",
+  "type": "Building Block",
+  "contributed_by": "Redis Labs",
+  "repo_url": "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby",
+  "download_url": "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/archive/master.zip",
+  "hosted_url": "",
+  "quick_deploy": "false",
+  "deploy_buttons": [
+    {
+      "heroku": ""
+    },
+    {
+      "vercel": ""
+    },
+    {
+      "Google": ""
+    }
+  ],
+  "language": ["Ruby"],
+  "redis_commands": ["HSET", "ZADD", "ZREVRANGE", "ZRANGE", "ZREVRANGE", "ZSCORE", "ZINCRBY", "ZCOUNT"],
+  "redis_features": ["bitmap"],
+  "redis_modules": [],
+  "app_image_urls": [
+    "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/blob/main/docs/screenshot001.png?raw=true"
+  ],
+  "youtube_url": "",
+  "special_tags": [],
+  "verticals": ["Analitics"],
+  "markdown": "https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-ruby/master/README.md"
+}
