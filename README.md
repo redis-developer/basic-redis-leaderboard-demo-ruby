@@ -3,6 +3,15 @@
 
 Show how the redis works with Ruby on Rails.
 
+#### Deploy to Heroku
+
+<p>
+  <a href="" target="_blank">
+      <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" />
+  </a>
+</p>
+
+
 ## Screenshots
 
 ![How it works](leaderboard/public/screenshot001.png)
