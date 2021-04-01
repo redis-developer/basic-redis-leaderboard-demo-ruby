@@ -6,7 +6,7 @@ Show how the redis works with Ruby on Rails.
 #### Deploy to Heroku
 
 <p>
-  <a href="https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.git" target="_blank">
+  <a href="https://heroku.com/deploy?template=https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.git" target="_blank">
       <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" />
   </a>
 </p>
@@ -88,7 +88,6 @@ git clone
 
 ``` sh
 bundle install
-cp config/database.yml.example config/database.yml
 rails db:create
 
 rails s
