@@ -32,15 +32,34 @@ Show how the redis works with Ruby on Rails.
 
 ## 2. How the data is accessed:
 <ol>
-    <li>Top 10 companies: <pre>ZREVRANGE companyLeaderboard 0 9 WITHSCORES</pre> </li>
-    <li>All companies: <pre>ZREVRANGE companyLeaderboard 0 -1 WITHSCORES</pre> </li>
-    <li>Bottom 10 companies: <pre>ZRANGE companyLeaderboard 0 9 WITHSCORES</pre></li>
-    <li>Between rank 10 and 15: <pre>ZREVRANGE companyLeaderboard 9 14 WITHSCORES</pre></li>
-    <li>Show ranks of AAPL, FB and TSLA: <pre>ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA</pre> </li>
-    <li>Adding market cap to companies: <pre>ZINCRBY companyLeaderBoard 1000000000 "company:FB"</pre></li>
-    <li>Reducing market cap to companies: <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre></li>
-    <li>Companies over a Trillion: <pre>ZCOUNT companyLeaderBoard 1000000000000 +inf</pre> </li>
-    <li>Companies between 500 billion and 1 trillion: <pre>ZCOUNT companyLeaderBoard 500000000000 1000000000000</pre></li>
+    <li>
+      Top 10 companies: <pre>ZREVRANGE companyLeaderboard 0 9 WITHSCORES</pre>
+      <img src="leaderboard/public/screenshot001.png"/>
+    </li>
+    <li>
+      All companies: <pre>ZREVRANGE companyLeaderboard 0 -1 WITHSCORES</pre>
+      <img src="leaderboard/app/assets/images/all_companies.png"/>
+    </li>
+    <li>
+      Bottom 10 companies: <pre>ZRANGE companyLeaderboard 0 9 WITHSCORES</pre>
+      <img src="leaderboard/app/assets/images/bottom.png"/>
+    </li>
+    <li>
+      Between rank 10 and 15: <pre>ZREVRANGE companyLeaderboard 9 14 WITHSCORES</pre>
+      <img src="leaderboard/app/assets/images/10_15.png"/>
+    </li>
+    <li>
+      Show ranks of AAPL, FB and TSLA: <pre>ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA</pre>
+      <img src="leaderboard/app/assets/images/3_companies.png"/>
+    </li>
+    <li>
+      Adding market cap to companies: <pre>ZINCRBY companyLeaderBoard 1000000000 "company:FB"</pre>
+      <img src="leaderboard/app/assets/images/add_cap.png"/>
+    </li>
+    <li>
+      Reducing market cap to companies: <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre>
+      <img src="leaderboard/app/assets/images/reduce_cap.png"/>
+    </li>
 </ol>
 
 ## How to run it locally?
@@ -70,6 +89,12 @@ npm run serve
 ``` sh
 cd leaderboard
 bundle install
-mv config/database.example.yml config/database.yml
+cp config/database.example.yml config/database.yml
 rails s
+```
+
+#### Run in browser
+
+``` sh
+open your browser and put 'http://localhost:8080'
 ```
