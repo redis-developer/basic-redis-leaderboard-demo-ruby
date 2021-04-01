@@ -84,13 +84,19 @@ Show how the redis works with Ruby on Rails.
 git clone
 ```
 
-#### Run
+#### Run app
 
 ``` sh
 bundle install
 cp config/database.yml.example config/database.yml
 rails db:create
+
 rails s
+```
+
+#### Compile assets
+``` sh
+bin/webpack-dev-server
 ```
 
 #### Run in browser
