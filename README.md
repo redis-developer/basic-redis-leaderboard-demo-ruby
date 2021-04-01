@@ -33,32 +33,41 @@ Show how the redis works with Ruby on Rails.
 ## 2. How the data is accessed:
 <ol>
     <li>
-      Top 10 companies: <pre>ZREVRANGE companyLeaderboard 0 9 WITHSCORES</pre>
+      Top 10 companies:
       <img src="leaderboard/public/screenshot001.png"/>
+      <pre>ZREVRANGE companyLeaderboard 0 9 WITHSCORES</pre>
     </li>
     <li>
-      All companies: <pre>ZREVRANGE companyLeaderboard 0 -1 WITHSCORES</pre>
+      All companies:
       <img src="leaderboard/app/assets/images/all_companies.png"/>
+      <pre>ZREVRANGE companyLeaderboard 0 -1 WITHSCORES</pre>
     </li>
     <li>
-      Bottom 10 companies: <pre>ZRANGE companyLeaderboard 0 9 WITHSCORES</pre>
+      Bottom 10 companies:
       <img src="leaderboard/app/assets/images/bottom.png"/>
+      <pre>ZRANGE companyLeaderboard 0 9 WITHSCORES</pre>
     </li>
     <li>
-      Between rank 10 and 15: <pre>ZREVRANGE companyLeaderboard 9 14 WITHSCORES</pre>
+      Between rank 10 and 15:
       <img src="leaderboard/app/assets/images/10_15.png"/>
+      <pre>ZREVRANGE companyLeaderboard 9 14 WITHSCORES</pre>
     </li>
     <li>
-      Show ranks of AAPL, FB and TSLA: <pre>ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA</pre>
+      Show ranks of AAPL, FB and TSLA:
       <img src="leaderboard/app/assets/images/3_companies.png"/>
+      <pre>ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA</pre>
     </li>
     <li>
-      Adding market cap to companies: <pre>ZINCRBY companyLeaderBoard 1000000000 "company:FB"</pre>
+      Adding market cap to companies:
+      <br>
       <img src="leaderboard/app/assets/images/add_cap.png"/>
+      <pre>ZINCRBY companyLeaderBoard 1000000000 "company:FB"</pre>
     </li>
     <li>
-      Reducing market cap to companies: <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre>
+      Reducing market cap to companies:
+      <br>
       <img src="leaderboard/app/assets/images/reduce_cap.png"/>
+      <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre>
     </li>
 </ol>
 
