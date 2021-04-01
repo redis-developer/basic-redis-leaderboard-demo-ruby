@@ -6,7 +6,7 @@ Show how the redis works with Ruby on Rails.
 #### Deploy to Heroku
 
 <p>
-  <a href="" target="_blank">
+  <a href="https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.git" target="_blank">
       <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" />
   </a>
 </p>
