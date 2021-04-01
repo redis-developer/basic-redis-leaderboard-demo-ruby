@@ -11,12 +11,6 @@
   "deploy_buttons": [
     {
       "heroku": ""
-    },
-    {
-      "vercel": ""
-    },
-    {
-      "Google": ""
     }
   ],
   "language": ["Ruby"],

@@ -1,0 +1,34 @@
+{
+  "name": "rails-vuejs",
+  "private": true,
+  "dependencies": {
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.2.1",
+    "axios": "^0.21.0",
+    "core-js": "^3.6.5",
+    "country-flags-svg": "^1.1.0",
+    "turbolinks": "^5.2.0",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
+    "vuetify": "^2.4.9"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.32.8",
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-vuetify": "~2.0.9",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

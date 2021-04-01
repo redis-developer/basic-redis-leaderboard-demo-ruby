@@ -1,0 +1,16 @@
+Default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: rails-leaderboard-development
+
+test:
+  <<: *default
+  database: rails-leaderboard-test
+
+production:
+  <<: *default
+  database: rails-leaderboard-production

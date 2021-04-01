@@ -14,8 +14,8 @@ Show how the redis works with Ruby on Rails.
 
 ## Screenshots
 
-![How it works](leaderboard/public/screenshot001.png)
-<img src="leaderboard/public/screenshot002.png" width="50%" height='200'/><img src="leaderboard/public/screenshot003.png" width="50%" height='200'/>
+![How it works](public/screenshot001.png)
+<img src="public/screenshot002.png" width="50%" height='200'/><img src="public/screenshot003.png" width="50%" height='200'/>
 
 # How it works?
 ## 1. How the data is stored:
@@ -34,39 +34,39 @@ Show how the redis works with Ruby on Rails.
 <ol>
     <li>
       Top 10 companies:
-      <img src="leaderboard/public/screenshot001.png"/>
+      <img src="public/screenshot001.png"/>
       <pre>ZREVRANGE companyLeaderboard 0 9 WITHSCORES</pre>
     </li>
     <li>
       All companies:
-      <img src="leaderboard/app/assets/images/all_companies.png"/>
+      <img src="app/javascript/images/all_companies.png"/>
       <pre>ZREVRANGE companyLeaderboard 0 -1 WITHSCORES</pre>
     </li>
     <li>
       Bottom 10 companies:
-      <img src="leaderboard/app/assets/images/bottom.png"/>
+      <img src="app/javascript/images/bottom.png"/>
       <pre>ZRANGE companyLeaderboard 0 9 WITHSCORES</pre>
     </li>
     <li>
       Between rank 10 and 15:
-      <img src="leaderboard/app/assets/images/10_15.png"/>
+      <img src="app/javascript/images/10_15.png"/>
       <pre>ZREVRANGE companyLeaderboard 9 14 WITHSCORES</pre>
     </li>
     <li>
       Show ranks of AAPL, FB and TSLA:
-      <img src="leaderboard/app/assets/images/3_companies.png"/>
+      <img src="app/javascript/images/3_companies.png"/>
       <pre>ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA</pre>
     </li>
     <li>
       Adding market cap to companies:
       <br>
-      <img src="leaderboard/app/assets/images/add_cap.png"/>
+      <img src="app/javascript/images/add_cap.png"/>
       <pre>ZINCRBY companyLeaderBoard 1000000000 "company:FB"</pre>
     </li>
     <li>
       Reducing market cap to companies:
       <br>
-      <img src="leaderboard/app/assets/images/reduce_cap.png"/>
+      <img src="app/javascript/images/reduce_cap.png"/>
       <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre>
     </li>
 </ol>
@@ -76,8 +76,7 @@ Show how the redis works with Ruby on Rails.
 ### Prerequisites
 
 - Ruby - v2.7.2
-- Rails - v5.2.4.5
-- NPM - v6.14.8
+- Rails - v6.1.3.1
 
 ## Development
 
@@ -85,25 +84,17 @@ Show how the redis works with Ruby on Rails.
 git clone
 ```
 
-#### Run frontend
-
-```sh
-cd client
-npm i
-npm run serve
-```
-
-#### Run backend
+#### Run
 
 ``` sh
-cd leaderboard
 bundle install
-cp config/database.example.yml config/database.yml
+cp config/database.yml.example config/database.yml
+rails db:create
 rails s
 ```
 
 #### Run in browser
 
 ``` sh
-open your browser and put 'http://localhost:8080'
+open your browser and put 'http://localhost:3000'
 ```
