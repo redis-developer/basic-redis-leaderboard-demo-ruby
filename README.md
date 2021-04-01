@@ -81,7 +81,7 @@ Show how the redis works with Ruby on Rails.
 ## Development
 
 ```
-git clone
+git clone https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.git
 ```
 
 #### Run app
