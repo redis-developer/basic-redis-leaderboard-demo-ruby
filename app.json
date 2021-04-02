@@ -4,5 +4,4 @@
   "repository": "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.git",
   "logo": "https://redis.io/images/redis-white.png",
   "keywords": ["ruby", "redis", "leadboard"]
-  }
 }
