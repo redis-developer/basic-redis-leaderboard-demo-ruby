@@ -10,6 +10,11 @@ Show how the redis works with Ruby on Rails.
       <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" />
   </a>
 </p>
+<p>
+  <a href="https://deploy.cloud.run/?git_repo=https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby" target="_blank">
+      <img src="https://deploy.cloud.run/button.svg" alt="Run on Google Cloud" width="150px"/>
+  </a>
+</p>
 
 
 ## Screenshots
