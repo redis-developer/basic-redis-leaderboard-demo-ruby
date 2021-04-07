@@ -1,21 +1,6 @@
-
 # Basic Redis Leaderboard Demo Ruby on Rails
 
 Show how the redis works with Ruby on Rails.
-
-#### Deploy to Heroku
-
-<p>
-  <a href="https://heroku.com/deploy" target="_blank">
-      <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" />
-  </a>
-</p>
-<p>
-  <a href="https://deploy.cloud.run/?git_repo=https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby" target="_blank">
-      <img src="https://deploy.cloud.run/button.svg" alt="Run on Google Cloud" width="150px"/>
-  </a>
-</p>
-
 
 ## Screenshots
 
@@ -23,58 +8,65 @@ Show how the redis works with Ruby on Rails.
 <img src="public/screenshot002.png" width="50%" height='200'/><img src="public/screenshot003.png" width="50%" height='200'/>
 
 # How it works?
-## 1. How the data is stored:
-<ol>
-  <li>The company data is stored in a hash like below:
-    <pre>HSET "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA</pre>
-   </li>
-  <li>The Ranks are stored in a ZSET.
-    <pre>ZADD companyLeaderboard 2600000000000 company:AAPL</pre>
-  </li>
-</ol>
 
-<br/>
+## How the data is stored:
 
-## 2. How the data is accessed:
-<ol>
-    <li>
-      Top 10 companies:
-      <img src="public/screenshot001.png"/>
-      <pre>ZREVRANGE companyLeaderboard 0 9 WITHSCORES</pre>
-    </li>
-    <li>
-      All companies:
-      <img src="app/javascript/images/all_companies.png"/>
-      <pre>ZREVRANGE companyLeaderboard 0 -1 WITHSCORES</pre>
-    </li>
-    <li>
-      Bottom 10 companies:
-      <img src="app/javascript/images/bottom.png"/>
-      <pre>ZRANGE companyLeaderboard 0 9 WITHSCORES</pre>
-    </li>
-    <li>
-      Between rank 10 and 15:
-      <img src="app/javascript/images/10_15.png"/>
-      <pre>ZREVRANGE companyLeaderboard 9 14 WITHSCORES</pre>
-    </li>
-    <li>
-      Show ranks of AAPL, FB and TSLA:
-      <img src="app/javascript/images/3_companies.png"/>
-      <pre>ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA</pre>
-    </li>
-    <li>
-      Adding market cap to companies:
-      <br>
-      <img src="app/javascript/images/add_cap.png"/>
-      <pre>ZINCRBY companyLeaderBoard 1000000000 "company:FB"</pre>
-    </li>
-    <li>
-      Reducing market cap to companies:
-      <br>
-      <img src="app/javascript/images/reduce_cap.png"/>
-      <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre>
-    </li>
-</ol>
+- The AAPL's details - market cap of 2,6 triillions and USA origin - are stored in a hash like below:
+  - E.g `HSET "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA`
+- The Ranks of AAPL of 2,6 trillions are stored in a <a href="https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-5-sorted-sets-in-redis/">ZSET</a>.
+  - E.g `ZADD companyLeaderboard 2600000000000 company:AAPL`
+
+## How the data is accessed:
+
+- Top 10 companies:
+  - E.g `ZREVRANGE companyLeaderboard 0 9 WITHSCORES`
+- All companies:
+  - E.g `ZREVRANGE companyLeaderboard 0 -1 WITHSCORES`
+- Bottom 10 companies:
+  - E.g `ZRANGE companyLeaderboard 0 9 WITHSCORES`
+- Between rank 10 and 15:
+  - E.g `ZREVRANGE companyLeaderboard 9 14 WITHSCORES`
+- Show ranks of AAPL, FB and TSLA:
+  - E.g `ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA`
+- Adding market cap to companies:
+  - E.g `ZINCRBY companyLeaderBoard 1000000000 "company:FB"`
+- Reducing market cap to companies:
+  - E.g `ZINCRBY companyLeaderBoard -1000000000 "company:FB"`
+- Companies over a Trillion:
+  - E.g `ZCOUNT companyLeaderBoard 1000000000000 +inf`
+- Companies between 500 billion and 1 trillion:
+  - E.g `ZCOUNT companyLeaderBoard 500000000000 1000000000000`
+
+### Code Example: Get top 10 companies
+
+```Ruby
+  def sort
+    case @params[:sort]
+    when 'top10'
+      add_rank(@companies.reverse.first(10), 1, 'plus')
+    when 'all'
+      @companies.reverse
+      add_rank(@companies.reverse, 1, 'plus')
+    when 'bottom10'
+      add_rank(@companies.first(10), 10, 'minus')
+    when 'symbols'
+      companies = @companies.select do |c|
+        @params[:values].tr('[]', '')
+                        .split(', ')
+                        .map(&:upcase)
+                        .include?(c[:symbol])
+      end
+      add_rank(companies.first(10), nil, nil)
+    when 'between_rank'
+      add_rank(select_by_range(9, 14), 10, 'plus')
+    when 'inRank'
+      companies = select_by_range(@params[:start], @params[:end])
+      add_rank(companies, (@params[:end].to_i - 9), 'plus')
+    else
+      @companies
+    end
+  end
+```
 
 ## How to run it locally?
 
@@ -91,7 +83,7 @@ git clone https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.g
 
 #### Run app
 
-``` sh
+```sh
 bundle install
 rails db:create
 
@@ -99,12 +91,26 @@ rails s
 ```
 
 #### Compile assets
-``` sh
+
+```sh
 bin/webpack-dev-server
 ```
 
 #### Run in browser
 
-``` sh
+```sh
 open your browser and put 'http://localhost:3000'
 ```
+
+#### Deploy to Heroku
+
+<p>
+  <a href="https://heroku.com/deploy" target="_blank">
+      <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" />
+  </a>
+</p>
+<p>
+  <a href="https://deploy.cloud.run/?git_repo=https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby" target="_blank">
+      <img src="https://deploy.cloud.run/button.svg" alt="Run on Google Cloud" width="150px"/>
+  </a>
+</p>
