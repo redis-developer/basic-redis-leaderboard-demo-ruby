@@ -32,10 +32,6 @@ Show how the redis works with Ruby on Rails.
   - E.g `ZINCRBY companyLeaderBoard 1000000000 "company:FB"`
 - Reducing market cap to companies:
   - E.g `ZINCRBY companyLeaderBoard -1000000000 "company:FB"`
-- Companies over a Trillion:
-  - E.g `ZCOUNT companyLeaderBoard 1000000000000 +inf`
-- Companies between 500 billion and 1 trillion:
-  - E.g `ZCOUNT companyLeaderBoard 500000000000 1000000000000`
 
 ### Code Example: Get companies by filter
 

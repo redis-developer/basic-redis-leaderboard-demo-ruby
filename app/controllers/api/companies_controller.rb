@@ -9,6 +9,7 @@ module Api
     def update
       company = @companies.select { |c| c['symbol'] == params['symbol'] }[0]
       company['marketCap'] += params['amount'].to_i
+      redis.zincrby("companyLeaderboard", params['amount'].to_i, company['company'])
       redis.del('companies')
       redis.set('companies', @companies.to_json)
       render json: JSON.parse(redis.get('companies')), status: :ok
