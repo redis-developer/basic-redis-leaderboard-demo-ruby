@@ -1,0 +1,8 @@
+env: flex
+runtime: ruby
+
+entrypoint: bundle exec rails server -p 8080
+
+env_variables:
+  REDIS_URL: <%= ENV['REDIS_HOST'] %>
+  REDIS_PASSWORD: <%= ENV['REDIS_PASSWORD'] %>
