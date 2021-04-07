@@ -11,5 +11,15 @@
           "version": "6.0"
         }
       }
-    ]
+    ],
+  "env": {
+    "REDIS_HOST": {
+      "description": "Redis server host",
+      "required": true
+    },
+    "REDIS_PASSWORD": {
+      "description": "Redis server password",
+      "required": true
+    }
+  }
 }
