@@ -1,11 +1,12 @@
 class CompanyQuery
-  def initialize(params)
+  def initialize(redis, companies, params)
     @params = params
-    @companies = COMPANIES.sort_by { |company| company[:marketCap] }
+    @redis = redis
+    @companies = companies
   end
 
   def call
-    sort
+    JSON.parse(sort)
   end
 
   private
@@ -13,28 +14,28 @@ class CompanyQuery
   def sort
     case @params[:sort]
     when 'top10'
-      add_rank(@companies.reverse.first(10), 1, 'plus')
+      @redis.set('top10', add_rank(@companies.reverse.first(10), 1, 'plus'))
     when 'all'
-      @companies.reverse
-      add_rank(@companies.reverse, 1, 'plus')
+      @redis.set('all', add_rank(@companies.reverse, 1, 'plus'))
     when 'bottom10'
-      add_rank(@companies.first(10), 10, 'minus')
+      @redis.set('bottom10', add_rank(@companies.first(10), 10, 'minus'))
     when 'symbols'
       companies = @companies.select do |c|
         @params[:values].tr('[]', '')
                         .split(', ')
                         .map(&:upcase)
-                        .include?(c[:symbol])
+                        .include?(c['symbol'])
       end
-      add_rank(companies.first(10), nil, nil)
+      @redis.set('symbols', add_rank(companies.first(10), nil, nil))
     when 'between_rank'
-      add_rank(select_by_range(9, 14), 10, 'plus')
+      @redis.set('between_rank', add_rank(select_by_range(9, 14), 10, 'plus'))
     when 'inRank'
       companies = select_by_range(@params[:start], @params[:end])
-      add_rank(companies, (@params[:end].to_i - 9), 'plus')
+      @redis.set('inRank', add_rank(companies, (@params[:end].to_i - 9), 'plus'))
     else
       @companies
     end
+    @redis.get(@params[:sort])
   end
 
   def select_by_range(start_range, end_range)
@@ -43,11 +44,11 @@ class CompanyQuery
 
   def add_rank(collection, value, operator)
     if operator.nil?
-      collection.each.with_index { |c, _i| c[:rank] = nil }
+      collection.each.with_index { |c, _i| c[:rank] = nil }.to_json
     else
       collection.each.with_index do |c, i|
         c[:rank] = operator == 'plus' ? (c[:rank] = value + i) : (c[:rank] = value - i)
-      end
+      end.to_json
     end
   end
 end

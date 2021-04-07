@@ -17,7 +17,7 @@
     }
   ],
   "language": ["Ruby"],
-  "redis_commands": ["HSET", "ZADD", "ZREVRANGE", "ZRANGE", "ZREVRANGE", "ZSCORE", "ZINCRBY", "ZCOUNT"],
+  "redis_commands": ["SET", "HSET", "ZADD", "ZREVRANGE", "ZRANGE", "ZREVRANGE", "ZSCORE", "ZINCRBY", "ZCOUNT"],
   "redis_features": ["bitmap"],
   "redis_modules": [],
   "app_image_urls": [
