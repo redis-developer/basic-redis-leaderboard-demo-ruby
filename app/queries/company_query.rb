@@ -14,10 +14,13 @@ class CompanyQuery
   def sort
     case @params[:sort]
     when 'top10'
+      @redis.zrevrange("companyLeaderboard", 0, 9, withscores: true)
       @redis.set('top10', add_rank(@companies.reverse.first(10), 1, 'plus'))
     when 'all'
+      @redis.zrevrange("companyLeaderboard", 0, -1, withscores: true)
       @redis.set('all', add_rank(@companies.reverse, 1, 'plus'))
     when 'bottom10'
+      @redis.zrange("companyLeaderboard", 0, 9, withscores: true)
       @redis.set('bottom10', add_rank(@companies.first(10), 10, 'minus'))
     when 'symbols'
       companies = @companies.select do |c|
@@ -28,12 +31,13 @@ class CompanyQuery
       end
       @redis.set('symbols', add_rank(companies.first(10), nil, nil))
     when 'between_rank'
+      @redis.zrange("companyLeaderboard", 9, 14, withscores: true)
       @redis.set('between_rank', add_rank(select_by_range(9, 14), 10, 'plus'))
     when 'inRank'
       companies = select_by_range(@params[:start], @params[:end])
       @redis.set('inRank', add_rank(companies, (@params[:end].to_i - 9), 'plus'))
     else
-      @companies
+      @redis.get('companies')
     end
     @redis.get(@params[:sort])
   end

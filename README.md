@@ -37,33 +37,38 @@ Show how the redis works with Ruby on Rails.
 - Companies between 500 billion and 1 trillion:
   - E.g `ZCOUNT companyLeaderBoard 500000000000 1000000000000`
 
-### Code Example: Get top 10 companies
+### Code Example: Get companies by filter
 
 ```Ruby
   def sort
     case @params[:sort]
     when 'top10'
-      add_rank(@companies.reverse.first(10), 1, 'plus')
+      redis.zrevrange("companyLeaderboard", 0, 9, withscores: true)
+      @redis.set('top10', add_rank(@companies.reverse.first(10), 1, 'plus'))
     when 'all'
-      @companies.reverse
-      add_rank(@companies.reverse, 1, 'plus')
+      redis.zrevrange("companyLeaderboard", 0, -1, withscores: true)
+      @redis.set('all', add_rank(@companies.reverse, 1, 'plus'))
     when 'bottom10'
-      add_rank(@companies.first(10), 10, 'minus')
+      redis.zrange("companyLeaderboard", 0, 9, withscores: true)
+      @redis.set('bottom10', add_rank(@companies.first(10), 10, 'minus'))
     when 'symbols'
       companies = @companies.select do |c|
         @params[:values].tr('[]', '')
                         .split(', ')
                         .map(&:upcase)
-                        .include?(c[:symbol])
+                        .include?(c['symbol'])
       end
-      add_rank(companies.first(10), nil, nil)
+      @redis.set('symbols', add_rank(companies.first(10), nil, nil))
     when 'between_rank'
-      add_rank(select_by_range(9, 14), 10, 'plus')
+      redis.zrange("companyLeaderboard", 9, 14, withscores: true)
+      @redis.set('between_rank', add_rank(select_by_range(9, 14), 10, 'plus'))
     when 'inRank'
       companies = select_by_range(@params[:start], @params[:end])
-      add_rank(companies, (@params[:end].to_i - 9), 'plus')
+      @redis.set('inRank', add_rank(companies, (@params[:end].to_i - 9), 'plus'))
     else
-      @companies
+      @redis.get('companies')
+    end
+      @redis.get(@params[:sort])
     end
   end
 ```
