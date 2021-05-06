@@ -11,7 +11,7 @@ Show how the redis works with Ruby on Rails.
 
 Here's a short video that explains the project and how it uses Redis:
 
-[![Watch the video on YouTube](public/YTThumbnail.png)](https://www.youtube.com/watch?v=GvLacDPaW80)
+[![Watch the video on YouTube](public/YTThumbnail.png)](https://www.youtube.com/watch?v=zzinHxdZ34I)
 
 # How it works?
 
