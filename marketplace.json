@@ -30,10 +30,10 @@
   "redis_features": ["Leaderboard"],
   "redis_modules": [],
   "app_image_urls": [
-    "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/blob/main/docs/screenshot001.png?raw=true"
+    "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/public/screenshot001.png"
   ],
   "youtube_url": "https://www.youtube.com/watch?v=zzinHxdZ34I",
   "special_tags": [],
   "verticals": ["Analitics"],
-  "markdown": "https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-ruby/master/README.md"
+  "markdown": "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/README.md"
 }
