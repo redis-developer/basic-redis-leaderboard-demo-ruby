@@ -4,14 +4,14 @@ Show how the redis works with Ruby on Rails.
 
 ## Screenshots
 
-![How it works](public/screenshot001.png)
-<img src="public/screenshot002.png" width="50%" height='200'/><img src="public/screenshot003.png" width="50%" height='200'/>
+![How it works](https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/public/screenshot001.png)
+<img src="https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/public/screenshot002.png" width="50%" height='200'/><img src="https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/public/screenshot003.png" width="50%" height='200'/>
 
 # Overview video
 
 Here's a short video that explains the project and how it uses Redis:
 
-[![Watch the video on YouTube](public/YTThumbnail.png)](https://www.youtube.com/watch?v=zzinHxdZ34I)
+[![Watch the video on YouTube](https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/public/YTThumbnail.png)](https://www.youtube.com/watch?v=zzinHxdZ34I)
 
 # How it works?
 
