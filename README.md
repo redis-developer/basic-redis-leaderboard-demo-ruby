@@ -2,10 +2,6 @@
 
 Shows how to build a leaderboard demo app using Ruby on Rails and Redis
 
-## Screenshots
-
-![How it works](https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-ruby/master/public/screenshot001.png)
-<img src="https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-ruby/master/public/screenshot002.png" width="50%" height='200'/><img src="https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-ruby/master/public/screenshot003.png" width="50%" height='200'/>
 
 # Overview video
 
