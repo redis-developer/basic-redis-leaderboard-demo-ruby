@@ -1,6 +1,6 @@
-# Leaderboard Demo app using Ruby on Rails and Redis
+# Leaderboard app using Ruby on Rails and Redis
 
-Shows how to build a leaderboard demo app using Ruby on Rails and Redis
+Shows how to build a leaderboard app using Ruby on Rails and Redis
 
 ## Technical Stack
 
