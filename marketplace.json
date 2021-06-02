@@ -1,6 +1,6 @@
 
 {
-  "app_name": "Leaderboard Demo app in Ruby on Rails",
+  "app_name": "Leaderboard app in Ruby on Rails",
   "description": "Showcases how to implement leaderboard application in Ruby on Rails using Redis",
   "type": "Building Block",
   "contributed_by": "Redis Labs",
