@@ -1,7 +1,7 @@
 
 {
-  "app_name": "Basic Redis Leaderboard Demo Ruby on Rails",
-  "description": "Showcases how to impliment leaderboard appliation in Ruby on Rails",
+  "app_name": "Leaderboard Demo app using Ruby on Rails",
+  "description": "Showcases how to implement leaderboard application in Ruby on Rails using Redis",
   "type": "Building Block",
   "contributed_by": "Redis Labs",
   "repo_url": "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby",
@@ -30,10 +30,10 @@
   "redis_features": ["Leaderboard"],
   "redis_modules": [],
   "app_image_urls": [
-    "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/public/screenshot001.png"
+    "https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-ruby/master/public/screenshot001.png"
   ],
   "youtube_url": "https://www.youtube.com/watch?v=zzinHxdZ34I",
   "special_tags": [],
   "verticals": ["Analitics"],
-  "markdown": "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby/raw/master/README.md"
+  "markdown": "https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-ruby/master/README.md"
 }
