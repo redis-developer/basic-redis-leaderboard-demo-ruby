@@ -1,38 +1,37 @@
 # Leaderboard app using Ruby on Rails and Redis
 
-Shows how to build a leaderboard app using Ruby on Rails and Redis
+This application demonstrates a leaderboard backed by Redis. The app uses company valuation and stock tickers as its domain.
 
 ## Technical Stack
 
 - Frontend: Ruby on Rails
 - Backend: Redis
 
-
 # How it works?
 
 ## How the data is stored:
 
-- The AAPL's details - market cap of 2,6 triillions and USA origin - are stored in a hash like below:
-  - E.g `HSET "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA`
-- The Ranks of AAPL of 2,6 trillions are stored in a <a href="https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-5-sorted-sets-in-redis/">ZSET</a>.
-  - E.g `ZADD companyLeaderboard 2600000000000 company:AAPL`
+- The stock ticker and valuation data are stored in a Redis hash like so:
+  - `HSET "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA`
+- The leaderboard and ranking themselves are stored in a sorted set using the <a href="https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-5-sorted-sets-in-redis/">ZSET</a> command:
+  - `ZADD companyLeaderboard 2600000000000 company:AAPL`
 
 ## How the data is accessed:
 
 - Top 10 companies:
-  - E.g `ZREVRANGE companyLeaderboard 0 9 WITHSCORES`
+  - `ZREVRANGE companyLeaderboard 0 9 WITHSCORES`
 - All companies:
-  - E.g `ZREVRANGE companyLeaderboard 0 -1 WITHSCORES`
+  - `ZREVRANGE companyLeaderboard 0 -1 WITHSCORES`
 - Bottom 10 companies:
-  - E.g `ZRANGE companyLeaderboard 0 9 WITHSCORES`
+  - `ZRANGE companyLeaderboard 0 9 WITHSCORES`
 - Between rank 10 and 15:
-  - E.g `ZREVRANGE companyLeaderboard 9 14 WITHSCORES`
+  - `ZREVRANGE companyLeaderboard 9 14 WITHSCORES`
 - Show ranks of AAPL, FB and TSLA:
-  - E.g `ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA`
+  - `ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA`
 - Adding market cap to companies:
-  - E.g `ZINCRBY companyLeaderBoard 1000000000 "company:FB"`
+  - `ZINCRBY companyLeaderBoard 1000000000 "company:FB"`
 - Reducing market cap to companies:
-  - E.g `ZINCRBY companyLeaderBoard -1000000000 "company:FB"`
+  - `ZINCRBY companyLeaderBoard -1000000000 "company:FB"`
 
 ### Code Example: Get companies by filter
 
@@ -87,9 +86,7 @@ git clone https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.g
 
 ```sh
 bundle install
-rails db:create
-
-rails s
+bin/rails server
 ```
 
 #### Compile assets
