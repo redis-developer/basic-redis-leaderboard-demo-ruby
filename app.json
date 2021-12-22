@@ -4,14 +4,7 @@
   "repository": "https://github.com/redis-developer/basic-redis-leaderboard-demo-ruby.git",
   "logo": "https://redis.io/images/redis-white.png",
   "keywords": ["ruby", "redis", "leadboard"],
-  "addons": [
-      {
-        "plan": "heroku-redis",
-        "options": {
-          "version": "6.0"
-        }
-      }
-    ],
+  "addons": ["rediscloud:30"],
   "env": {
     "REDIS_HOST": {
       "description": "Redis server host",
